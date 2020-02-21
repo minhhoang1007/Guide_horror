@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBlack90"
+    tools:context=".QuestionActivity">
+    <LinearLayout
+        android:background="@color/colorBlack"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+        <ImageView
+            android:paddingLeft="10dp"
+            android:id="@+id/backmore"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </ImageView>
+        <TextView
+            android:paddingLeft="10dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:text="Frequently asked Questions"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rcViewQues"
+        tools:listitem="@layout/item_question"
+        />
+
+</LinearLayout>
