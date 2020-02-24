@@ -1,106 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBlack90"
-    android:orientation="vertical"
-    tools:context=".AboutActivity">
-    <TableLayout
+    android:background="@color/colorBlack"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_marginBottom="120dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:stretchColumns="1">
+        android:background="@color/colorBlack90"
+        android:orientation="vertical"
+        tools:context=".AboutActivity">
 
-        <LinearLayout
-            android:background="@color/colorBlack"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:paddingLeft="10dp"
-                android:id="@+id/backgui"
-                android:src="@drawable/ic_arrow_back_black_24dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:stretchColumns="1">
 
-            </ImageView>
-            <TextView
-                android:paddingLeft="10dp"
-                android:textColor="@color/colorWhite"
-                android:textSize="20sp"
-                android:text="Ice Scream: Horror Neighborhood"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/colorBlack"
+                android:orientation="horizontal">
 
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/txtAboutTitle"
-                android:text="WHAT'S IT ABOUT"
-                android:textStyle="bold"
-                android:textColor="@color/colorWhite"
-                android:textSize="24sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/backguiabout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:src="@drawable/ic_arrow_back_black_24dp">
 
-            </TextView>
-            <TextView
-                android:id="@+id/txtAboutDes"
-                android:text="In ICE SCREAM: HORROR NEIGHBORHOOD, you watch in horror when the ice cream man attacks a kid and pulls them into his truck. But rather than do the responsible thing and call the cops, or even your parents, you decide to pull a move from Stranger Things and rescue the kid yourself. Played from the first-person perspective, but with relatively simple touch controls, you have to explore the world, and figure out how to solve some situational problems. Just be sure to be sneaky because if the ice cream man sees you..."
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp"
-                android:scaleX="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                </ImageView>
 
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
-            <TextView
-                android:text="IS IT ANY GOOD?"
-                android:textStyle="bold"
-                android:textColor="@color/colorWhite"
-                android:textSize="24sp"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="Ice Scream: Horror Neighborhood"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp">
 
-                android:scaleX="1"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp">
+                </TextView>
+            </LinearLayout>
 
-            </TextView>
-            <TextView
-                android:text="As much as you may enjoy a good scare, the most frightening thing about this scary stealth game is its prohibitively awkward controls. In Ice Scream: Horror Neighborhood you're a kid who's excited to see the ice cream truck... until you witness the ice cream man grab one of your school chums. Played from the first-person perspective, you have to rescue the kid by exploring the world and solving problems, all while doing your best to not be seen by the ice cream man."
-                android:layout_width="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:textSize="16sp"
-                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
 
-            </TextView>
-            <TextView
-                android:text="While this take on a precious childhood memory could add to the fright factor here, this isn't nearly as scary, or engaging, as it could've been. For starters, the controls don't work as well as they should for a game in which you have to run away from a child predator. Not only does it not let you interact with objects unless you're positioned just right, but the movement controls are really clunky. It also doesn't help that the ice cream man has better situational awareness than he should for a man wearing a large, unwieldy mask (or is that his head?). And yet he sometimes can’t find you even when he sees you you duck into a hiding spot. All of which is why Ice Scream: Horror Neighborhood isn't even as scary as getting brain freeze from a milk shake."
+                <TextView
+                    android:id="@+id/txtAboutTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WHAT'S IT ABOUT"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="24sp"
+                    android:textStyle="bold">
 
-                android:scaleX="1"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:layout_height="wrap_content">
+                </TextView>
 
-            </TextView>
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/txtAboutDes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="1"
+                    android:text="In ICE SCREAM: HORROR NEIGHBORHOOD, you watch in horror when the ice cream man attacks a kid and pulls them into his truck. But rather than do the responsible thing and call the cops, or even your parents, you decide to pull a move from Stranger Things and rescue the kid yourself. Played from the first-person perspective, but with relatively simple touch controls, you have to explore the world, and figure out how to solve some situational problems. Just be sure to be sneaky because if the ice cream man sees you..."
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp">
+
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:scaleX="1"
+                    android:text="IS IT ANY GOOD?"
+
+                    android:textColor="@color/colorWhite"
+                    android:textSize="24sp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="As much as you may enjoy a good scare, the most frightening thing about this scary stealth game is its prohibitively awkward controls. In Ice Scream: Horror Neighborhood you're a kid who's excited to see the ice cream truck... until you witness the ice cream man grab one of your school chums. Played from the first-person perspective, you have to rescue the kid by exploring the world and solving problems, all while doing your best to not be seen by the ice cream man."
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:scaleX="1"
+                    android:text="While this take on a precious childhood memory could add to the fright factor here, this isn't nearly as scary, or engaging, as it could've been. For starters, the controls don't work as well as they should for a game in which you have to run away from a child predator. Not only does it not let you interact with objects unless you're positioned just right, but the movement controls are really clunky. It also doesn't help that the ice cream man has better situational awareness than he should for a man wearing a large, unwieldy mask (or is that his head?). And yet he sometimes can’t find you even when he sees you you duck into a hiding spot. All of which is why Ice Scream: Horror Neighborhood isn't even as scary as getting brain freeze from a milk shake."
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16sp">
+
+                </TextView>
+            </LinearLayout>
 
 
-    </TableLayout>
+        </TableLayout>
 
 
-</ScrollView>
+    </ScrollView>
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        ads:adSize="LARGE_BANNER"
+        ads:adUnitId="@string/ad_unit_it" />
+
+</RelativeLayout>

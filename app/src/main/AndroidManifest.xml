@@ -13,8 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AnswerActivity"></activity>
-        <activity android:name=".QuestionActivity" />
+        <activity android:name=".DetailGuideActivity"
+            android:parentActivityName=".GuideActivity"></activity>
+        <activity android:name=".AnswerActivity"
+            android:parentActivityName=".QuestionActivity"/>
+        <activity android:name=".QuestionActivity"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MoreActivity"
             android:parentActivityName=".MainActivity" />
@@ -31,6 +35,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true" />
     </application>
 
 </manifest>

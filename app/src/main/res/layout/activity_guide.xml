@@ -32,11 +32,32 @@
 
         </TextView>
     </LinearLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rcViewGui"
-        tools:listitem="@layout/item_guide"
-        />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="120dp"
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rcViewGui"
+                tools:listitem="@layout/item_guide"
+                />
+        </LinearLayout>
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="LARGE_BANNER"
+            ads:adUnitId="@string/ad_unit_it"/>
+
+    </RelativeLayout>
+
+
 </LinearLayout>

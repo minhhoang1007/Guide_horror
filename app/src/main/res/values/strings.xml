@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">GuideHorror</string>
+    <string name="ad_unit_it" >ca-app-pub-3940256099942544/6300978111</string>
+    <string name="app_ads_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="ads_inter">ca-app-pub-3940256099942544/1033173712</string>
 </resources>

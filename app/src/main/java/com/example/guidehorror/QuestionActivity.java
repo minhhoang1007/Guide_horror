@@ -1,5 +1,6 @@
 package com.example.guidehorror;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,15 +8,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.guidehorror.model.AnswerModel;
 import com.example.guidehorror.model.QuestionModel;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -26,32 +34,50 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.login.LoginException;
+
 public class QuestionActivity extends AppCompatActivity {
     private String url = "assets/question.json";
     private RecyclerView mList;
     private List<QuestionModel> movieList;
-
+    ImageView img;
+    AdView mAdView;
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Window window = this.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(this.getResources().getColor(android.R.color.black));
+        window.setNavigationBarColor(this.getResources().getColor(android.R.color.black));
         setContentView(R.layout.activity_question);
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         mList = findViewById(R.id.rcViewQues);
+        img = (ImageView) findViewById(R.id.backques);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         getDataFromJson(getApplicationContext());
         mList.setHasFixedSize(true);
         mList.setLayoutManager(layoutManager);
         QuestionAdapter adapter = new QuestionAdapter(this, movieList);
         mList.setAdapter(adapter);
-
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onViewClicked();
+            }
+        });
         adapter.setOnClickLisener(new QuestionAdapter.OnClickLisener() {
             @Override
             public void onClick(QuestionModel data) {
-                Intent intent = new Intent(QuestionActivity.this, AnswerActivity.class);
-                Log.e("aaaa", "onClick: " + data.toString());
-
+                Intent intent = new Intent(getApplicationContext(), AnswerActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("aaa", data);
-                intent.putExtra("questionModel", bundle);
+                bundle.putString("ques", data.getQuestion());
+                bundle.putString("user",data.getAnswer().get(0).getUser());
+                bundle.putString("answer",data.getAnswer().get(0).getValue());
+                //Toast.makeText(QuestionActivity.this,data.getAnswer().get(0).getUser() , Toast.LENGTH_SHORT).show();
+                intent.putExtra("question", bundle);
                 startActivity(intent);
             }
         });
@@ -80,5 +106,12 @@ public class QuestionActivity extends AppCompatActivity {
         }
         return json;
     }
+    public void onViewClicked() {
+        onBackPressed();
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
