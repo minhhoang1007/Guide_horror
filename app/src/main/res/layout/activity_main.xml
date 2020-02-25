@@ -78,7 +78,6 @@
                 app:layout_constraintEnd_toStartOf="@id/btnMore"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
-
             <Button
                 android:id="@+id/btnMore"
                 android:layout_width="0dp"

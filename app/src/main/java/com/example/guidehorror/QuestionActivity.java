@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.guidehorror.model.AnswerModel;
 import com.example.guidehorror.model.QuestionModel;
+import com.example.guidehorror.utils.BannerUltils;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -59,6 +60,7 @@ public class QuestionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_question);
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.setAdListener(new BannerUltils().adListener(mAdView,1));
         mAdView.loadAd(adRequest);
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.ads_inter));

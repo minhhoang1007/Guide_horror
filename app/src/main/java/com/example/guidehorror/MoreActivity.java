@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import com.example.guidehorror.utils.BannerUltils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -27,6 +28,7 @@ public class MoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_more);
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.setAdListener(new BannerUltils().adListener(mAdView,1));
         mAdView.loadAd(adRequest);
         img = (ImageView) findViewById(R.id.backmore);
         img.setOnClickListener(new View.OnClickListener() {

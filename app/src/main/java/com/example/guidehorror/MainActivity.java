@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.guidehorror.utils.BannerUltils;
 import com.example.guidehorror.utils.SharedPrefsUtils;
 import com.example.ratedialog.RatingDialog;
 import com.google.android.gms.ads.AdListener;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements RatingDialog.Rati
         MobileAds.initialize(this, getString(R.string.app_ads_id));
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.setAdListener(new BannerUltils().adListener(mAdView,1));
         mAdView.loadAd(adRequest);
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.ads_inter));

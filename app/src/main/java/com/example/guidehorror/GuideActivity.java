@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.guidehorror.model.GuideModel;
+import com.example.guidehorror.utils.BannerUltils;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -56,6 +57,7 @@ public class GuideActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guide);
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.setAdListener(new BannerUltils().adListener(mAdView,1));
         mAdView.loadAd(adRequest);
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.ads_inter));
