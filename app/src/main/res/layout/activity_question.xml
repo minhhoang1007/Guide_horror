@@ -39,7 +39,7 @@
        android:layout_width="match_parent"
        android:layout_height="match_parent">
       <LinearLayout
-          android:layout_marginBottom="120dp"
+          android:layout_marginBottom="60dp"
           android:layout_width="match_parent"
           android:layout_height="match_parent">
           <androidx.recyclerview.widget.RecyclerView
@@ -58,9 +58,16 @@
                android:layout_height="wrap_content"
                android:layout_alignParentBottom="true"
                android:layout_centerHorizontal="true"
-               ads:adSize="LARGE_BANNER"
+               ads:adSize="BANNER"
                ads:adUnitId="@string/ad_unit_it"/>
-
+       <include
+           android:visibility="gone"
+           android:id="@+id/loading"
+           layout="@layout/loading"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_centerInParent="true"
+           />
 
    </RelativeLayout>
 

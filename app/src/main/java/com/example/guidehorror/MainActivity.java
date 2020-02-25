@@ -189,6 +189,8 @@ public class MainActivity extends AppCompatActivity implements RatingDialog.Rati
             RatingDialog ratingDialog = new RatingDialog(this);
             ratingDialog.setRatingDialogListener((RatingDialog.RatingDialogInterFace) this);
             ratingDialog.showDialog();
+            SharedPrefsUtils.getInstance(this).putInt("rate", 5);
+
         }
     }
 

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -19,8 +20,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.guidehorror.model.GuideModel;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -30,15 +33,17 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GuideActivity extends AppCompatActivity {
-    //    private ArrayList<String> mtitle = new ArrayList<>();
-//    private ArrayList<Integer> mimg = new ArrayList<>();
+
     private String url = "assets/data.json";
     private RecyclerView mList;
     private List<GuideModel> movieList;
+    private InterstitialAd mInterstitialAd;
     AdView mAdView;
     ImageView img;
+    View loading;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -52,6 +57,10 @@ public class GuideActivity extends AppCompatActivity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.ads_inter));
+
+        loading = (View) findViewById(R.id.loading);
         mList = findViewById(R.id.rcViewGui);
         img = (ImageView) findViewById(R.id.backgui);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -78,19 +87,60 @@ public class GuideActivity extends AppCompatActivity {
                 bundle.putString("img3", data.getDescription().get(4));
                 bundle.putString("txt1", data.getDescription().get(1));
                 bundle.putString("txt2", data.getDescription().get(3));
-
                 //Toast.makeText(GuideActivity.this, data.getName(), Toast.LENGTH_SHORT).show();
                 intent.putExtra("data", bundle);
-                startActivity(intent);
+                intentToScreenAds(intent);
             }
         });
     }
+    private void intentToScreenAds(final Intent guideintent) {
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                mInterstitialAd.show();
+            }
 
-    private void getDataFromJson(Context context) {
+            @Override
+            public void onAdOpened() {
+                loading.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                loading.setVisibility(View.GONE);
+                startActivity(guideintent);
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                startActivity(guideintent);
+            }
+        });
+        loading.setVisibility(View.VISIBLE);
+        int random = new Random().nextInt(3);
+        if (random == 1) {
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        } else {
+            loading.setVisibility(View.VISIBLE);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loading.setVisibility(View.GONE);
+                    startActivity(guideintent);
+                }
+            }, 1000);
+        }
+
+    }
+
+        private void getDataFromJson(Context context) {
         Type type1 = new TypeToken<ArrayList<GuideModel>>() {
         }.getType();
         movieList = new Gson().fromJson(loadJSONFromAsset(this, "data"), type1);
-
     }
 
     public String loadJSONFromAsset(Context context, String name) {
@@ -117,4 +167,6 @@ public class GuideActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+
+
 }

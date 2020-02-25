@@ -25,15 +25,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> {
-//   private ArrayList<String> mtitle;
-//   private ArrayList<Integer> mimage;
     List<GuideModel> list;
    private Context mcontext;
    private OnClickLisener onClickLisener;
    public GuideAdapter(Context context, ArrayList<GuideModel> list){
        this.list = list;
        this.mcontext = context;
-
    }
     public void setOnClickLisener(GuideAdapter.OnClickLisener onClickLisener) {
         this.onClickLisener = onClickLisener;
@@ -48,27 +45,8 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-//        Glide.with(mcontext)
-//                .asBitmap()
-//                .load(mimage.get(position))
-//                .into(holder.image);
-//        holder.title.setText(mtitle.get(position));
-//        holder.image.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(mcontext, "abc", Toast.LENGTH_SHORT).show();
-//            }
-//        });
         GuideModel guideModel = list.get(position);
         holder.title.setText(guideModel.getName());
-        //Drawable drawable = Drawable.createFromPath(guideModel.getImage());
-        //holder.image.setImageDrawable(getR);
-
-
-//        Glide.with(mcontext)
-//                .asBitmap()
-//                .load(guideModel.getImage())
-//                .into(holder.image);
         Bitmap bitmap = null;
         try {
             bitmap = loadBitmapImage(holder.itemView.getContext(), guideModel.getImage());

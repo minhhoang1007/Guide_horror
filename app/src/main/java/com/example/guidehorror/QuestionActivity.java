@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
@@ -22,8 +23,10 @@ import android.widget.Toast;
 
 import com.example.guidehorror.model.AnswerModel;
 import com.example.guidehorror.model.QuestionModel;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,6 +36,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.security.auth.login.LoginException;
 
@@ -42,6 +46,8 @@ public class QuestionActivity extends AppCompatActivity {
     private List<QuestionModel> movieList;
     ImageView img;
     AdView mAdView;
+    private InterstitialAd mInterstitialAd;
+    View loading;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,9 @@ public class QuestionActivity extends AppCompatActivity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.ads_inter));
+        loading = (View) findViewById(R.id.loading);
         mList = findViewById(R.id.rcViewQues);
         img = (ImageView) findViewById(R.id.backques);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -78,9 +87,52 @@ public class QuestionActivity extends AppCompatActivity {
                 bundle.putString("answer",data.getAnswer().get(0).getValue());
                 //Toast.makeText(QuestionActivity.this,data.getAnswer().get(0).getUser() , Toast.LENGTH_SHORT).show();
                 intent.putExtra("question", bundle);
-                startActivity(intent);
+                intentToScreenAds(intent);
             }
         });
+
+    }
+    private void intentToScreenAds(final Intent guideintent) {
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                mInterstitialAd.show();
+            }
+
+            @Override
+            public void onAdOpened() {
+                loading.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                loading.setVisibility(View.GONE);
+                startActivity(guideintent);
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                startActivity(guideintent);
+            }
+        });
+        loading.setVisibility(View.VISIBLE);
+        int random = new Random().nextInt(3);
+        if (random == 1) {
+            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        } else {
+            loading.setVisibility(View.VISIBLE);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loading.setVisibility(View.GONE);
+                    startActivity(guideintent);
+                }
+            }, 1000);
+        }
 
     }
 

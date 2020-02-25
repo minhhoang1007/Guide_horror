@@ -9,4 +9,20 @@
         <item name="android:fontFamily">@font/</item>
 
     </style>
+
+    <style name="content_style">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:scaleX">1</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+<!--        android:paddingLeft="10dp"-->
+<!--        android:scaleX="1"-->
+<!--        android:textAlignment="center"-->
+<!--        android:text="Ice Scream Episode 2: Horror Neighborhood release date was on 17 December 2019, and it came just in time for the Holiday season. With nothing to do but revel in the warmth of our homes and enjoy some time off, I’ve thought of playing some recommended games, and this title sounded attractive. If you are one to love a scary, heart-stopping experience and Holidays are otherwise boring without some old school horror, well…this title is just the thing."-->
+<!--        android:textColor="@color/colorWhite"-->
+<!--        android:textSize="16sp"-->
+
+    </style>
+
+
 </resources>

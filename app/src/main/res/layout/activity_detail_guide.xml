@@ -34,7 +34,7 @@
     </LinearLayout>
     <ScrollView
         android:layout_marginTop="70dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -53,7 +53,9 @@
             <ImageView
                 android:id="@+id/imgGui1"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"></ImageView>
+                android:scaleType="centerCrop"
+                android:src="@drawable/guide21"
+                android:layout_height="200dp"/>
             <TextView
                 android:id="@+id/txtGui2"
                 android:layout_margin="5dp"
@@ -65,8 +67,9 @@
             </TextView>
             <ImageView
                 android:id="@+id/imgGui2"
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"></ImageView>
+                android:layout_height="200dp"/>
             <TextView
                 android:id="@+id/txtGui3"
                 android:layout_margin="5dp"
@@ -78,8 +81,9 @@
             </TextView>
             <ImageView
                 android:id="@+id/imgGui3"
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"></ImageView>
+                android:layout_height="200dp"/>
         </LinearLayout>
     </ScrollView>
     <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
@@ -88,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        ads:adSize="LARGE_BANNER"
+        ads:adSize="BANNER"
         ads:adUnitId="@string/ad_unit_it"/>
 
 
